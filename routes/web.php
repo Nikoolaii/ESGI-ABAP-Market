@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home');
-});
+})
+->name('home');
 
 Auth::routes();
 
@@ -16,10 +17,12 @@ Route::prefix('admin')->group(function () {
         ->name('admin.index');
 });
 
-// Route::get('/articles', [ArticlesController::class, 'index'])
-//     ->name('articles.index');
+// Route::get('/products', [ArticlesController::class, 'index'])
+//     ->name('products.index');
 
 Route::get('/contact', function () {
     return view('contact');
 })
     ->name('contact');
+
+
