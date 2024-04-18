@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home');
+<<<<<<< HEAD
 })
+=======
+    })
+>>>>>>> 12b40aaac0ef16ac490b3f1e303ec177d38dd131
     ->name('home');
 
 Auth::routes();
