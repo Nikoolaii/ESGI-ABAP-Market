@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Faq_answer extends Model
+class OrderItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'faq_answers';
+    protected $table = 'order_items';
 
     protected $fillable = [
         'id',
         'created_at',
         'updated_at',
-        'user_id',
-        'faq_id',
-        'answer',
+        'order_id',
+        'product_id',
+        'quantity',
+        'price',
     ];
 
     protected $casts = [
@@ -27,13 +28,13 @@ class Faq_answer extends Model
 
     protected $primaryKey = 'id';
 
-    public function user()
+    public function order()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Order::class);
     }
 
-    public function faq()
+    public function product()
     {
-        return $this->belongsTo(Faq::class);
+        return $this->belongsTo(Product::class);
     }
 }
