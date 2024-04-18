@@ -9,3 +9,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])
+        ->name('admin.index');
+});
