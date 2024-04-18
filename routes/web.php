@@ -19,7 +19,10 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/products', [ProductController::class, 'index'])
-    ->name('products');
+    ->name('products.index');
+
+Route::post('/products/show/{id}', [ProductController::class, 'show'])
+    ->name('products.show');
 
 Route::get('/contact', function () {
     return view('contact');
