@@ -28,7 +28,7 @@
                   </div>
             </div>
             <div class="mx-auto text-center">
-                <a href="{{ route('products') }}" class="btn btn-primary btn-lg">Discover our products</a>
+                <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">Discover our products</a>
             </div>
         </div>
     </div>

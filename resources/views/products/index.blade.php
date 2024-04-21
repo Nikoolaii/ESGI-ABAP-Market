@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('content')
+{{-- @section('content') --}}
     <html lang="en">
 
     <head>
@@ -49,13 +49,16 @@
                                 <div class="col-xl-4 mb-5 product-card" data-category="">
                                     <div class='card shadow-lg col-xl-12 col-sm-6 border pt-3 mx-auto'
                                         style="height:450px;">
-                                        <div style="height: 200px;" class="d-flex align-items-center justify-content-center">
-                                            <img src="{{ $product->image }}" alt="product image" class='img-fluid mx-auto h-75 d-inline-block'>
+                                        <div style="height: 200px;"
+                                            class="d-flex align-items-center justify-content-center">
+                                            <img src="{{ $product->image }}" alt="product image"
+                                                class='img-fluid mx-auto h-75 d-inline-block'>
                                         </div>
                                         <div class='card-body'>
                                             <h5 class='card-title pb-1'><b>{{ $product->name }}</b></h5>
                                             <p class='card-text h5 pb-2'>Price {{ $product->price }} €</p>
                                             <form action="{{ route('products.show', $product->id) }}" method="post">
+                                                @csrf
                                                 <input class="d-none" type="text" name="id_product" value="" />
                                                 <button type="submit" class='btn btn-primary btn-lg'>See more</button>
                                             </form>
@@ -72,4 +75,4 @@
     </body>
 
     </html>
-@endsection
+{{-- @endsection --}}
