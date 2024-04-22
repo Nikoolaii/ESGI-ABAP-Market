@@ -4,8 +4,13 @@
     <div class="container-fluid m-0 p-0">
         <div class="row justify-content-center">
             <img src="{{ asset('img/AbapMarket.png') }}" alt="ABAP Marketing" class="img-fluid">
+            <div class="col-xl-12">
+              @if(isset($discount))
+              <h1 class="text-center bg-dark text-light py-2">Purchase with the code {{ $discount->code }} and obtain a discount of {{ $discount->value }} %</h1>
+              @endif
+            </div>
             <div class="col-md-8 mt-4">
-                <div id="carouselExample" class="carousel slide">
+                {{-- <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
                         <img src="{{ asset('img/banner1.png') }}" class="d-block w-100" alt="...">
@@ -25,7 +30,7 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
-                  </div>
+                  </div> --}}
             </div>
             <div class="mx-auto text-center">
                 <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">Discover our products</a>

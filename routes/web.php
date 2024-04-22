@@ -4,12 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('home');
-})
-->name('home');
+
+// Route::prefix('home')->group(function () {
+//     Route::get('/', [HomeController::class, 'index'])
+//         ->name('home');
+// });
+
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
 Auth::routes();
 
@@ -25,7 +30,7 @@ Route::post('/products/show/{id}', [ProductController::class, 'show'])
     ->name('products.show');
 
 Route::get('/contact', function () {
-    return view('contact');
+    return view('contact.index');
 })
     ->name('contact');
 
