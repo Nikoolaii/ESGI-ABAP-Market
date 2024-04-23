@@ -19,11 +19,8 @@
                         <h1>Filters <i class="fas fa-filter fa-fw"></i></h1>
                         <div class="d-flex" style="height: 20px;"></div>
                         <div class="input-group mb-3">
-                            <input type="search" class="form-control" id="search" placeholder="Rechercher un article"
+                            <input type="search" class="form-control" id="search" placeholder="Search a product"
                                 aria-label="SearchBar" aria-describedby="button-search" />
-                            <button class="btn btn-outline-secondary" type="button" id="searchButton">
-                                <i class="fas fa-magnifying-glass"></i>
-                            </button>
                         </div>
                         <div class="d-flex" style="height: 20px;"></div>
                         <p class='h4'>Categories</p>
@@ -56,6 +53,24 @@
                                 <span class="input-group-text" id="button-addon2">€</span>
                             </div>
                         </div>
+                        <!-- More -->
+                        <div class="d-flex" style="height: 60px;"></div>
+                        <p class='h4'>More</p>
+                        <hr class="w-100" />
+                        <div class="d-flex" style="height: 20px;"></div>
+                        <div class="d-flex justify-content-center">
+                            <div class="input-group mb-3 ms-2">
+                                {{-- list of filters like popularity, price asc or desc --}}
+                                <div class="btn-group dropdown w-100 btn-secondary">
+                                    <select id="sortDropdown" class="form-select" name="sortDropdown" required>
+                                        <option value="nothing">Nothing</option>
+                                        <option value="popularity">Popularity</option>
+                                        <option value="priceLowToHigh">Price: Low to High</option>
+                                        <option value="priceHighToLow">Price: High to Low</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Colonne pour les articles -->
@@ -65,7 +80,7 @@
                         <div class="d-flex" style="height: 50px;"></div>
                         <div class="row d-flex flex-wrap" id="productsContainer">
                             @foreach ($products as $product)
-                                <div class="col-xl-4 mb-5 product-card" data-category="{{$product->categorie_id}}">
+                                <div class="col-xl-4 mb-5 product-card" data-category="{{ $product->categorie_id }}">
                                     <div class='card shadow-lg col-xl-12 col-sm-6 border pt-3 mx-auto'
                                         style="height:450px;">
                                         <div style="height: 200px;"
@@ -78,7 +93,7 @@
                                             <p class='card-text h5 pb-2'>Price {{ $product->price }} €</p>
                                             <form action="{{ route('products.show', $product->id) }}" method="post">
                                                 @csrf
-                                                <input class="d-none" type="text" name="id_product"/>
+                                                <input class="d-none" type="text" name="id_product" />
                                                 <button type="submit" class='btn btn-primary btn-lg'>See more</button>
                                             </form>
                                         </div>
@@ -92,5 +107,6 @@
             </div>
         </div>
     </body>
+
     </html>
 @endsection
