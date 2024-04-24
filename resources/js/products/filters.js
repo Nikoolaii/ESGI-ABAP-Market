@@ -3,13 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var searchInput = document.getElementById("search");
     var minPriceInput = document.getElementById("minPrice");
     var maxPriceInput = document.getElementById("maxPrice");
-    var sortDropdown = document.querySelector('.dropdown-menu');
 
     select.addEventListener("change", filterProducts);
     searchInput.addEventListener("input", filterProducts);
     minPriceInput.addEventListener("input", filterProducts);
     maxPriceInput.addEventListener("input", filterProducts);
-    sortDropdown.addEventListener("click", sortProducts);
 
     function filterProducts() {
         var selectedCategory = select.value;
@@ -65,31 +63,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    function sortProducts(event) {
-        if (event.target.tagName === "A") {
-            var sortBy = event.target.textContent;
-            var productCards = document.querySelectorAll("#productsContainer .product-card");
-            
-            if (sortBy === "Price: Low to High") {
-                var sortedCards = Array.from(productCards).sort(function (a, b) {
-                    var priceA = parseFloat(a.querySelector('.card-text').textContent.split(' ')[1]);
-                    var priceB = parseFloat(b.querySelector('.card-text').textContent.split(' ')[1]);
-                    return priceA - priceB;
-                });
-            } else if (sortBy === "Price: High to Low") {
-                var sortedCards = Array.from(productCards).sort(function (a, b) {
-                    var priceA = parseFloat(a.querySelector('.card-text').textContent.split(' ')[1]);
-                    var priceB = parseFloat(b.querySelector('.card-text').textContent.split(' ')[1]);
-                    return priceB - priceA;
-                });
-            }
-            
-            // Réinsérer les cartes triées dans le conteneur de produits
-            var productsContainer = document.getElementById('productsContainer');
-            productsContainer.innerHTML = ""; // Vider le conteneur
-            sortedCards.forEach(function (card) {
-                productsContainer.appendChild(card);
-            });
-        }
-    }
+   
 });

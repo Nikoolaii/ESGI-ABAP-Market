@@ -63,7 +63,6 @@
                                 {{-- list of filters like popularity, price asc or desc --}}
                                 <div class="btn-group dropdown w-100 btn-secondary">
                                     <select id="sortDropdown" class="form-select" name="sortDropdown" required>
-                                        <option value="nothing">Nothing</option>
                                         <option value="popularity">Popularity</option>
                                         <option value="priceLowToHigh">Price: Low to High</option>
                                         <option value="priceHighToLow">Price: High to Low</option>
@@ -110,3 +109,4 @@
 
     </html>
 @endsection
+
