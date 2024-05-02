@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -17,8 +17,8 @@ Route::prefix('admin')->group(function () {
         ->name('admin.index');
 });
 
-// Route::get('/products', [ArticlesController::class, 'index'])
-//     ->name('products.index');
+Route::get('/profil', [UserController::class, 'index'])
+->name('profil');
 
 Route::get('/contact', function () {
     return view('contact');
