@@ -6,6 +6,8 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import './products/filters';
+import './faq/filters';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin

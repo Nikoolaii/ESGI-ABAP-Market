@@ -27,4 +27,5 @@ class Discount extends Model
     ];
 
     protected $primaryKey = 'id';
+
 }

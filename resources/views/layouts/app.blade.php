@@ -41,9 +41,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('products') }}">{{ __('Products') }}</a>
-                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
                         </li>

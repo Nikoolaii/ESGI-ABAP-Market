@@ -1,58 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid ">
-        <div class="row h-100 text-dark ">
-            <!-- Colonne pour les filtres -->
-            <div class="card shadow-lg col-xl-4 col-sm border pt-5">
-                <div class="col-xl-10 col-sm mx-auto">
-                    <h1>Filtres <i class="fas fa-filter fa-fw"></i></h1>
-                    <div class="d-flex" style="height: 20px;"></div>
-                    <div class="input-group mb-3">
-                        <input type="search" class="form-control" id="search" placeholder="Rechercher un article"
-                            aria-label="SearchBar" aria-describedby="button-search" />
-                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="d-flex" style="height: 20px;"></div>
-                    <p class='h4'>Catégories</p>
-                    <hr class="w-100" />
-
-                    <div class="btn-group dropdown w-100">
-                        <select class="form-select" name="type" required>
-                            <option value="All">Toutes les catégories</option>
-                            {{-- <option value="Digital">Digital</option>
-                        <option value="Immobilier">Immobilier</option>
-                        <option value="Mode">Mode</option> --}}
-                        </select>
-                    </div>
-                </div>
+    <div class="container-fluid m-0 p-0">
+        <div class="row justify-content-center">
+            <img src="{{ asset('img/AbapMarket.png') }}" alt="ABAP Marketing" class="img-fluid">
+            <div class="col-xl-12">
+              @if(isset($discount))
+              <h1 class="text-center bg-dark text-light py-2">Purchase with the code {{ $discount->code }} and obtain a discount of {{ $discount->value }} %</h1>
+              @endif
             </div>
-            <!-- Colonne pour les articles -->
-            <div class="col-xl-8 col-sm text-center border pt-5">
-                <div class="col-xl-10 mx-auto">
-                    <h1>Articles</h1>
-                    <div class="d-flex" style="height: 50px;"></div>
-                    <div class="row d-flex flex-wrap" id="productsContainer">
-                        <div class="col-xl-4 mb-5 product-card" data-category="">
-                            <div class='card shadow-lg col-xl-12 col-sm-6 border pt-5 mx-auto' style="height:450px;">
-                                <div style="height: 200px;">
-                                    <img src='./Pictures/' class='img-fluid mx-auto h-75 d-inline-block'>
-                                </div>
-                                <div class='card-body'>
-                                    <h5 class='card-title pb-1'></h5>
-                                    <p class='card-text h5 pb-4'>Prix €</p>
-                                    <form action="/product" method="post">
-                                        <input class="d-none" type="text" name="id_product" value="" />
-                                        <button type="submit" class='btn btn-primary btn-lg'>Voir le produit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-
+            <div class="col-md-8 mt-4">
+                {{-- <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{{ asset('img/banner1.png') }}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{ asset('img/banner2.png') }}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{ asset('img/banner3.png') }}" class="d-block w-100" alt="...">
+                      </div>
                     </div>
-                </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div> --}}
+
+                  <div class="row d-flex justify-content-around">
+                    <div class="col-xl-3 col-sm shadow shadow-lg rounded-4 p-4">
+                      <p class="h1 text-center">Total product on our site</p>
+                      <br>
+                      <p class="h1 text-center text-primary">{{ $products }}</p>
+                    </div>
+                    <div class="col-xl-3 col-sm shadow shadow-lg rounded-4 p-4">
+                      <p class="h1 text-center">Total product ordered</p>
+                      <br>
+                      <p class="h1 text-center text-primary">{{ $totalOrdered }}</p>
+                    </div>
+                    <div class="col-xl-3 col-sm shadow shadow-lg rounded-4 p-4">
+                      <p class="h1 text-center">Total user registered</p>
+                      <br>
+                      <p class="h1 text-center text-primary">{{ $users }}</p>
+                    </div>
+                  </div>
             </div>
-        @endsection
+            <div class="d-flex" style="height:100px;"></div>
+            <div class="mx-auto text-center">
+                <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">Discover our products</a>
+            </div>
+        </div>
+    </div>
+
+@endsection
