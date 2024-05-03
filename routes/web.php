@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Admin\ProductsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,18 +28,29 @@ Route::prefix('admin')->group(function () {
 //        ->middleware('IsAdmin');
 
     Route::resource('products', ProductsController::class)
-        ->name('index', 'admin.products.index');
-
-    Route::prefix('orders')->group(function(){
-        Route::get('/', [OrderController::class, 'index'])
-            ->name('admin.orders.index');
-
-        Route::get('/show/{id}', [OrderController::class, 'show'])
-            ->name('admin.orders.show');
-
-        Route::post('/delete/{id}', [OrderController::class, 'delete'])
-            ->name('admin.orders.delete');
-    });
+        ->name('index', 'admin.products.index')
+        ->name('create', 'admin.products.create')
+        ->name('store', 'admin.products.store')
+        ->name('show', 'admin.products.show')
+        ->name('edit', 'admin.products.edit')
+        ->name('update', 'admin.products.update')
+        ->name('destroy', 'admin.products.destroy');
+    Route::resource('orders', OrdersController::class)
+        ->name('index', 'admin.orders.index')
+        ->name('create', 'admin.orders.create')
+        ->name('store', 'admin.orders.store')
+        ->name('show', 'admin.orders.show')
+        ->name('edit', 'admin.orders.edit')
+        ->name('update', 'admin.orders.update')
+        ->name('destroy', 'admin.orders.destroy');
+    Route::resource('categories', CategoriesController::class)
+        ->name('index', 'admin.categories.index')
+        ->name('create', 'admin.categories.create')
+        ->name('store', 'admin.categories.store')
+        ->name('show', 'admin.categories.show')
+        ->name('edit', 'admin.categories.edit')
+        ->name('update', 'admin.categories.update')
+        ->name('destroy', 'admin.categories.destroy');
 });
 
 
@@ -53,11 +66,6 @@ Route::get('/contact', [ContactController::class, 'index'])
 
 Route::post('/contact/answer/{id}', [ContactController::class, 'show'])
     ->name('contact.show');
-
-
-Route::get('/basket', [BasketController::class, 'getBasket'])
-    ->name('basket');
-
 
 Route::get('/profil', [UserController::class, 'index'])
     ->name('profil');
