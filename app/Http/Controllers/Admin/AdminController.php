@@ -10,8 +10,8 @@ class AdminController extends Controller
     {
         $elementToManage = [
             'products' => ['name' => 'Products', 'route' => 'admin.products.index'],
-            'orders' => ['name' => 'Orders', 'route' => 'admin.orders.index'],
-            'categories' => ['name' => 'Categories', 'route' => 'admin.categories.index'],
+            'orders' => ['name' => 'Orders', 'route' => 'orders.index'],
+            'categories' => ['name' => 'Categories', 'route' => 'categories.index'],
         ];
         return view('admin.index', compact('elementToManage'));
     }

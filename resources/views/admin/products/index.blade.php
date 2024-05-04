@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="w-8/12 bg-white p-6 rounded-lg">
-        <div class="my-4 p-2">
+        <div class="mb-4 p-2">
             <h1 class="text-2xl font-medium mb-1">Products</h1>
             <p class="text-gray-500">All products</p>
-            <a href="{{route('admin.index')}}">
+            <a href="{{ route('admin.index') }}">
                 <button class="btn btn-primary btn-lg active">Go back</button>
             </a>
             <a href="{{route('admin.products.create')}}">
@@ -31,14 +31,16 @@
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>
-                            <a href="{{ route('admin.products.edit', $product) }}">
-                                <button class="btn btn-primary btn-lg active">Edit</button>
-                            </a>
-                            <form action="{{ route('admin.products.destroy', $product) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-lg active">Delete</button>
-                            </form>
+                            <div class="d-flex flex-row">
+                                <a href="{{ route('admin.products.edit', $product) }}">
+                                    <button class="btn btn-primary btn-lg active m-1">Edit</button>
+                                </a>
+                                <form action="{{ route('admin.products.destroy', $product) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-lg active m-1">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

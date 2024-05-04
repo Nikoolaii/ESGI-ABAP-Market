@@ -5,7 +5,7 @@
         <div class="my-4 p-2">
             <h1 class="text-2xl font-medium mb-1">Order</h1>
             <p class="text-gray-500">Order details n°{{$order->id}}</p>
-            <a href="{{route('admin.orders.index')}}">
+            <a href="{{ route('orders.index') }}">
                 <button class="btn btn-primary btn-lg active">Go back</button>
             </a>
         </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="border border-dark rounded m-3 p-4">
             <h4>Edit status</h4>
-            <form action="{{route('admin.orders.update', $order->id)}}" method="post">
+            <form action="{{route('orders.update', $order->id)}}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="form-group my-2">

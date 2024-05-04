@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="w-8/12 bg-white p-6 rounded-lg">
-        <div class="my-4 p-2">
+        <div class="mb-4 p-2">
             <h1 class="text-2xl font-medium mb-1">Create a product</h1>
-            <a href="{{route('admin.products.index')}}">
+            <a href="{{ route('admin.products.index') }}">
                 <button class="btn btn-primary btn-lg active mx-1">Go back</button>
             </a>
         </div>

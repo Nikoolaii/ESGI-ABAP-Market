@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="w-8/12 bg-white p-6 rounded-lg">
-        <div class="my-4 p-2">
+        <div class="mb-4 p-2">
             <h1 class="text-2xl font-medium mb-1">Orders</h1>
             <p class="text-gray-500">All orders</p>
-            <a href="{{route('admin.index')}}">
+            <a href="{{ route('admin.index') }}">
                 <button class="btn btn-primary btn-lg active">Go back</button>
             </a>
         </div>
@@ -28,7 +28,7 @@
                         <td>{{$order->total}}</td>
                         <td>{{$order->status}}</td>
                         <td>
-                            <a href="{{route('admin.orders.show', $order->id)}}">
+                            <a href="{{route('orders.show', $order->id)}}">
                                 <button class="btn btn-primary btn-lg active">Show</button>
                             </a>
                         </td>
