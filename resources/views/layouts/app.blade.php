@@ -45,7 +45,7 @@
                         <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
+                        <a class="nav-link" href="{{ route('contact.index') }}">{{ __('Contact') }}</a>
                     </li>
                 </ul>
 
@@ -72,7 +72,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profil') }}">Profil</a>
+                                <a class="dropdown-item" href="{{ route('profil.index') }}">Profil</a>
                                 @if (Auth::user()->is_admin == 1)
                                     <a class="dropdown-item" href="{{ route('admin.index') }}">Admin</a>
                                 @endif

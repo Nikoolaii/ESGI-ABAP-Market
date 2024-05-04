@@ -2,29 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Faq;
 use App\Models\FaqAnswer;
-use App\Models\Categorie;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function index()
-    {   
+    {
 
         $questions = Faq::paginate(6);
         $answers = FaqAnswer::all();
-        $categories = Faq::get(['category']);
 
         return view('contact.index', [
-            'categories' => $categories,
             'questions' => $questions,
             'answers' => $answers
         ]);
     }
 
-    public function show($id )
-    {   
+    public function show($id)
+    {
         $question = Faq::find($id);
         $answers = FaqAnswer::all()->where('faq_id', $id);
 
@@ -32,5 +29,47 @@ class ContactController extends Controller
             'question' => $question,
             'answers' => $answers
         ]);
+    }
+
+    public function create()
+    {
+        return view('contact.create');
+    }
+
+    public function store(Request $request)
+    {
+        $faq = new Faq();
+        $faq->object = $request->object;
+        $faq->description = $request->description;
+        $faq->user()->associate(auth()->user());
+        $faq->save();
+
+        return redirect()->route('contact.index');
+    }
+
+    public function edit($id)
+    {
+        $question = Faq::find($id);
+
+        return view('contact.edit', [
+            'question' => $question
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $faq = Faq::find($id);
+        $faq->question = $request->question;
+        $faq->save();
+
+        return redirect()->route('contact.index');
+    }
+
+    public function destroy($id)
+    {
+        $faq = Faq::find($id);
+        $faq->delete();
+
+        return redirect()->route('contact.index');
     }
 }

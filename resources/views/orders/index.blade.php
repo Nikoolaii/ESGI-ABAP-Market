@@ -28,7 +28,7 @@
                         <td>{{$order->total}}</td>
                         <td>{{$order->status}}</td>
                         <td>
-                            <a href="{{route('orders.show', $order->id)}}">
+                            <a href="{{route('admin.orders.show', $order->id)}}">
                                 <button class="btn btn-primary btn-lg active">Show</button>
                             </a>
                         </td>
