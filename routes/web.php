@@ -44,7 +44,7 @@ Route::get('/orders/{id}', [OrderController::class, 'show'])
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');
 
-Route::post('/products/show/{id}', [ProductController::class, 'show'])
+Route::get('/products/show/{id}', [ProductController::class, 'show'])
     ->name('products.show');
 
 Route::get('/profil', [UserController::class, 'index'])
