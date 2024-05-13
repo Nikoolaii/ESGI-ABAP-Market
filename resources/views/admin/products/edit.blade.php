@@ -5,7 +5,7 @@
         <div class="mb-4 p-2">
             <h1 class="text-2xl font-medium mb-1">Edit a product</h1>
             <a href="{{ route('admin.products.index') }}">
-                <button class="btn btn-primary btn-lg active mx-1">Go back</button>
+                <button class="btn btn-primary mx-1">Go back</button>
             </a>
         </div>
         <form action="{{ route('admin.products.update', $product) }}" method="post">
@@ -73,7 +73,7 @@
                     @enderror
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary active btn-lg mx-1">Update
+                    <button type="submit" class="btn btn-primary mx-1">Update
                     </button>
                 </div>
             </div>

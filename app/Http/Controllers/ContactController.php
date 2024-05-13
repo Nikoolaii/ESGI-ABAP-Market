@@ -11,7 +11,7 @@ class ContactController extends Controller
     public function index()
     {
 
-        $questions = Faq::paginate(6);
+        $questions = Faq::paginate(10);
         $answers = FaqAnswer::all();
 
         return view('contact.index', [

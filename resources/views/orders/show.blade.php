@@ -7,11 +7,11 @@
             <p class="text-gray-500">Order details n°{{$order->id}}</p>
             @if(Request::is('admin/*'))
                 <a href="{{ route('orders.index') }}">
-                    <button class="btn btn-primary btn-lg active">Go back</button>
+                    <button class="btn btn-primary">Go back</button>
                 </a>
             @else
                 <a href="{{ route('profil') }}">
-                    <button class="btn btn-primary btn-lg active">Go back</button>
+                    <button class="btn btn-primary">Go back</button>
                 </a>
             @endif
 
@@ -51,7 +51,7 @@
                             </option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg active">Update</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
         @endif

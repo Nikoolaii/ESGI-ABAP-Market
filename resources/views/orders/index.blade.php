@@ -6,7 +6,7 @@
             <h1 class="text-2xl font-medium mb-1">Orders</h1>
             <p class="text-gray-500">All orders</p>
             <a href="{{ route('admin.index') }}">
-                <button class="btn btn-primary btn-lg active">Go back</button>
+                <button class="btn btn-primary">Go back</button>
             </a>
         </div>
         <div class="text-center">
@@ -29,7 +29,7 @@
                         <td>{{$order->status}}</td>
                         <td>
                             <a href="{{route('admin.orders.show', $order->id)}}">
-                                <button class="btn btn-primary btn-lg active">Show</button>
+                                <button class="btn btn-primary">Show</button>
                             </a>
                         </td>
                     </tr>

@@ -21,7 +21,7 @@
                     <tr>
                         <th scope="row">{{ $category['name'] }}</th>
                         <td><a href="{{ route($category['route']) }}">
-                                <button class="btn btn-primary btn-lg active">Redirect</button>
+                                <button class="btn btn-primary">Redirect</button>
                             </a></td>
                     </tr>
                 @endforeach

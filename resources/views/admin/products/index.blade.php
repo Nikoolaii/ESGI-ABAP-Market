@@ -6,10 +6,10 @@
             <h1 class="text-2xl font-medium mb-1">Products</h1>
             <p class="text-gray-500">All products</p>
             <a href="{{ route('admin.index') }}">
-                <button class="btn btn-primary btn-lg active">Go back</button>
+                <button class="btn btn-primary">Go back</button>
             </a>
             <a href="{{route('admin.products.create')}}">
-                <button class="btn btn-primary btn-lg active mx-1">Create product</button>
+                <button class="btn btn-primary mx-1">Create product</button>
             </a>
         </div>
         <div class="text-center">
@@ -33,12 +33,12 @@
                         <td>
                             <div class="d-flex flex-row">
                                 <a href="{{ route('admin.products.edit', $product) }}">
-                                    <button class="btn btn-primary btn-lg active m-1">Edit</button>
+                                    <button class="btn btn-primary m-1">Edit</button>
                                 </a>
                                 <form action="{{ route('admin.products.destroy', $product) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-lg active m-1">Delete</button>
+                                    <button type="submit" class="btn btn-danger m-1">Delete</button>
                                 </form>
                             </div>
                         </td>

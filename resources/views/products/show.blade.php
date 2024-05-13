@@ -33,33 +33,28 @@
                             <h1 class="card-title pb-1">{{ $product->name }}</h1>
                         </div>
                         <div class='d-flex' style='height: 20px;'></div>
-                        <p class='lead' style="font-size: 28px;">Price of the product, <b>{{ $product->price }}€</b></p>
-                        <div class='d-flex' style='height: 20px;'></div>
-                        <hr>
-                        <div class='d-flex' style='height: 20px;'></div>
+                        <p class='lead' style="font-size: 28px;">Price: <b>{{ $product->price }}€</b></p>
                         <hr>
                         <p class='h3 text-dark'>Description</p>
-                        <div class='d-flex' style='height: 20px;'></div>
                         <p class='lead ps-3' style="font-size:20px;">{{ $product->description }}</p>
-                        <div class='d-flex' style='height: 20px;'></div>
                     </div>
-                    <div class='d-flex' style='height: 20px;'></div>
                     <hr>
-                    <hr>
-                    <div class='col-xl-11 col-sm mx-auto'>
-                        <div class='d-flex' style='height: 20px;'></div>
-
-                        <div class='d-flex' style='height: 20px;'></div>
-                        <p class='h3 text-dark'>Disponibility : {{ $product->stock}}  {{ $product->name }} in stock
-                            !</p>
-                        <div class='d-flex' style='height: 20px;'></div>
-                    </div>
-
-                    <?php
-                    ?>
-
-                    <div class='d-flex' style='height: 50px;'></div>
-                    <a href="" class="btn btn-primary btn-lg py-4">Add to cart</a>
+                    <form action="{{ route('basket.store') }}" method="post" class="mb-4">
+                        @csrf
+                        @method('POST')
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <div class="col-xl-11 col-sm mx-auto">
+                            <div class="col-xl-6 col-sm mx-auto">
+                                <p>Stock : {{ $product->stock}}</p>
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="number" name="quantity" id="quantity" class="form-control" value="1">
+                            </div>
+                            <div class="d-flex" style="height: 20px;"></div>
+                            <div class="col-xl-6 col-sm mx-auto">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">Add to basket</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class='d-flex' style='height: 50px;'></div>
                 <div class="col-xl-6 col-sm mx-auto text-center">

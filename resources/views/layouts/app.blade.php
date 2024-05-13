@@ -73,7 +73,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('profil.index') }}">Profil</a>
-                                @if (Auth::user()->is_admin == 1)
+                                @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin == 1)
                                     <a class="dropdown-item" href="{{ route('admin.index') }}">Admin</a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -87,9 +87,9 @@
                             </div>
                         </li>
                         <li>
-                            {{--                                <a href="{{ route('basket') }}" class="nav-link">--}}
-                            {{--                                    <img src="{{ asset('img/cart-shopping-solid.svg') }}">--}}
-                            {{--                                </a>--}}
+                            <a href="{{ route('basket') }}" class="nav-link">
+                                <img src="{{ asset('img/cart-shopping-solid.svg') }}" width="18px" height="18px">
+                            </a>
                         </li>
                     @endguest
                 </ul>

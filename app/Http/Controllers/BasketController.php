@@ -2,48 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+
+class BasketController extends Controller
 {
 
-    public function getBasket() {
+    public function index()
+    {
         $basket = $this->getBasketElements();
-        return view('basket', ['basket' => $basket]);
+        return view('basket.index', ['basket' => $basket]);
     }
 
-    public function getBasketElements(){
+    public function getBasketElements()
+    {
         return session()->get('basket');
     }
-    public function addElementToBasket($id) {
-        $product = Product::find($id);
+
+    public function addElementToBasket(Request $request)
+    {
+        $product = Product::find($request->product_id);
         $basket = session()->get('basket');
         if (!$basket) {
             $basket = [
-                $id => [
-                    'name' => $product->name,
-                    'quantity' => 1,
-                    'price' => $product->price
+                $product->id => [
+                    'quantity' => $request->quantity,
                 ]
             ];
             session()->put('basket', $basket);
             return redirect()->back()->with('success', 'Product added to basket successfully!');
         }
-        if (isset($basket[$id])) {
-            $basket[$id]['quantity']++;
+        if (isset($basket[$product->id])) {
+            $basket[$product->id]['quantity'] = $basket[$product->id]['quantity'] + $request->quantity;
             session()->put('basket', $basket);
             return redirect()->back()->with('success', 'Product added to basket successfully!');
         }
-        $basket[$id] = [
-            'name' => $product->name,
-            'quantity' => 1,
-            'price' => $product->price
+        $basket[$product->id] = [
+            'quantity' => $request->quantity,
         ];
         session()->put('basket', $basket);
         return redirect()->back()->with('success', 'Product added to basket successfully!');
     }
 
-    public function removeElementFromBasket($id) {
+    public function removeElementFromBasket($id)
+    {
         $product = Product::find($id);
         $basket = session()->get('basket');
         if (isset($basket[$id])) {

@@ -2,13 +2,16 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\faqAnswerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +19,9 @@ Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
 Auth::routes();
-
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth', isAdminMiddleware::class])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])
         ->name('admin.index');
-//        ->middleware('IsAdmin');
 
     Route::resource('products', ProductsController::class)
         ->name('index', 'admin.products.index')
@@ -31,6 +32,7 @@ Route::prefix('admin')->group(function () {
         ->name('update', 'admin.products.update')
         ->name('destroy', 'admin.products.destroy');
     Route::resource('categories', CategoryController::class);
+    Route::resource('discounts', DiscountController::class);
 
     Route::resource('orders', OrderController::class)
         ->name('show', 'admin.orders.show');
@@ -57,3 +59,11 @@ Route::get('/faqAnswer/create/{id}', [faqAnswerController::class, 'create'])
 
 Route::resource('faqAnswer', faqAnswerController::class)
     ->except(['create']);
+
+Route::get('basket', [BasketController::class, 'index'])
+    ->name('basket')
+    ->middleware('auth');
+
+Route::post('basket/add/', [BasketController::class, 'addElementToBasket'])
+    ->name('basket.store')
+    ->middleware('auth');

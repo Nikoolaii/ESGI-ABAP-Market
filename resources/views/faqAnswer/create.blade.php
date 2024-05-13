@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid ">
+    <div class="container-fluid bg-light">
         <div class="col-xl-10 mb-5 product-card mx-auto">
             <h1 class="text-center mt-3 mb-5">Answer</h1>
             <form action="{{ route('faqAnswer.store') }}" method="POST">
