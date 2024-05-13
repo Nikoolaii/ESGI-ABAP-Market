@@ -9,20 +9,21 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $sort = $request->query('sort');
 
         $products = Product::select('products.*', DB::raw('SUM(order_items.quantity) as total_orders'))
         ->leftJoin('order_items', 'products.id', '=', 'order_items.product_id')
         ->groupBy('products.id')
-        ->orderByDesc('total_orders') 
         ->paginate(6);
 
         $categories = Categorie::all();
 
+
         return view('products.index', [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 

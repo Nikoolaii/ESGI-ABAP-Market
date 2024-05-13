@@ -1,16 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Products</title>
-    </head>
-
-    <body>
+@section('content')  
         <div class="container-fluid ">
             <div class="row h-100 text-dark ">
                 <!-- Colonne pour les filtres -->
@@ -62,7 +52,7 @@
                             <div class="input-group mb-3 ms-2">
                                 {{-- list of filters like popularity, price asc or desc --}}
                                 <div class="btn-group dropdown w-100 btn-secondary">
-                                    <select id="sortDropdown" class="form-select" name="sortDropdown" required>
+                                    <select id="sortDropdown" class="form-select" name="sortDropdown">
                                         <option value="popularity">Popularity</option>
                                         <option value="priceLowToHigh">Price: Low to High</option>
                                         <option value="priceHighToLow">Price: High to Low</option>
@@ -79,7 +69,7 @@
                         <div class="d-flex" style="height: 50px;"></div>
                         <div class="row d-flex flex-wrap" id="productsContainer">
                             @foreach ($products as $product)
-                                <div class="col-xl-4 mb-5 product-card" data-category="{{ $product->categorie_id }}">
+                                <div class="col-xl-4 mb-5 product-card" data-category="{{ $product->categorie_id }}" data-popularity="{{ $product->total_orders }}">
                                     <div class='card shadow-lg col-xl-12 col-sm-6 border pt-3 mx-auto'
                                         style="height:450px;">
                                         <div style="height: 200px;"
@@ -101,12 +91,10 @@
                             @endforeach
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center mt-5 "> {{ $products->links('vendors.pagination.custom') }}</div>
                 </div>
-                <div class="d-flex justify-content-center mt-5 "> {{ $products->links('vendors.pagination.custom') }}</div>
             </div>
         </div>
-    </body>
 
-    </html>
 @endsection
 

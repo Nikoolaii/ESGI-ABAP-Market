@@ -10,7 +10,7 @@
 
     <title>
         {{-- {{ $title ?? config('app.name', 'Laravel') }} --}}
-        ABAP Marketing
+        ABAP Market
     </title>
 
     <!-- Fonts -->
