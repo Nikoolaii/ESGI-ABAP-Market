@@ -3,11 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var searchInput = document.getElementById("search");
     var minPriceInput = document.getElementById("minPrice");
     var maxPriceInput = document.getElementById("maxPrice");
+    var sortDropdown = document.getElementById("sortDropdown");
+
 
     select.addEventListener("change", filterProducts);
     searchInput.addEventListener("input", filterProducts);
     minPriceInput.addEventListener("input", filterProducts);
     maxPriceInput.addEventListener("input", filterProducts);
+    sortDropdown.addEventListener("change", sortProducts);
 
     function filterProducts() {
         var selectedCategory = select.value;
@@ -44,6 +47,39 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 card.style.display = "none";
             }
+        });
+    }
+
+    function sortProducts() {
+        var sortBy = sortDropdown.value;
+        var productsContainer = document.getElementById("productsContainer");
+        var productCards = document.querySelectorAll("#productsContainer .product-card");
+
+        var sortedCards = Array.from(productCards);
+
+        if (sortBy === "priceLowToHigh") {
+            sortedCards.sort(function (a, b) {
+                var priceA = parseFloat(a.querySelector(".card-text").textContent.split(" ")[1].replace(",", "."));
+                var priceB = parseFloat(b.querySelector(".card-text").textContent.split(" ")[1].replace(",", "."));
+                return priceA - priceB;
+            });
+        } else if (sortBy === "priceHighToLow") {
+            sortedCards.sort(function (a, b) {
+                var priceA = parseFloat(a.querySelector(".card-text").textContent.split(" ")[1].replace(",", "."));
+                var priceB = parseFloat(b.querySelector(".card-text").textContent.split(" ")[1].replace(",", "."));
+                return priceB - priceA;
+            });
+        } else if (sortBy === "popularity") {
+            sortedCards.sort(function (a, b) {
+                var popularityA = parseInt(a.getAttribute("data-popularity"));
+                var popularityB = parseInt(b.getAttribute("data-popularity"));
+                return popularityB - popularityA;
+            });
+        }
+
+        productsContainer.innerHTML = "";
+        sortedCards.forEach(function (card) {
+            productsContainer.appendChild(card);
         });
     }
 

@@ -7,6 +7,7 @@ use App\Models\Discount;
 use App\Models\Product;
 use App\Models\OrderItem;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -19,12 +20,18 @@ class HomeController extends Controller
         $discount = Discount::where('expires_at', '>', now())
             ->orderBy('expires_at', 'asc')
             ->first();
+        $bestSeller =  Product::select('products.*', DB::raw('SUM(order_items.quantity) as total_orders'))
+        ->leftJoin('order_items', 'products.id', '=', 'order_items.product_id')
+        ->groupBy('products.id')
+        ->orderBy('total_orders', 'desc')
+        ->paginate(5);
 
         return view('home', [
             'discount' => $discount,
             'products' => $products,
             'totalOrdered' => $totalOrdered,
-            'users' => $users
+            'users' => $users,
+            'bestSeller' => $bestSeller
         ]);
     }
 
