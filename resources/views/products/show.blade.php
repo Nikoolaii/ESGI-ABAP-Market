@@ -31,12 +31,29 @@
                         <div class='d-flex' style='height: 20px;'></div>
                         <div class="col-xl-8 col-sm">
                             <h1 class="card-title pb-1">{{ $product->name }}</h1>
+                            @if ($product->stock > 0)
+                                <p class="text-success">In stock</p>
+                            @else
+                                <p class="text-danger">Out of stock</p>
+                            @endif
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                         </div>
                         <div class='d-flex' style='height: 20px;'></div>
                         <p class='lead' style="font-size: 28px;">Price: <b>{{ $product->price }}€</b></p>
                         <hr>
                         <p class='h3 text-dark'>Description</p>
-                        <p class='lead ps-3' style="font-size:20px;">{{ $product->description }}</p>
+                        <p class='lead' style="font-size:20px;">{{ $product->description }}</p>
                     </div>
                     <hr>
                     <form action="{{ route('basket.store') }}" method="post" class="mb-4">
@@ -47,7 +64,8 @@
                             <div class="col-xl-6 col-sm mx-auto">
                                 <p>Stock : {{ $product->stock}}</p>
                                 <label for="quantity" class="form-label">Quantity</label>
-                                <input type="number" name="quantity" id="quantity" class="form-control" value="1">
+                                <input type="number" name="quantity" id="quantity" class="form-control" value="1"
+                                       max="{{ $product->stock }}" min="1">
                             </div>
                             <div class="d-flex" style="height: 20px;"></div>
                             <div class="col-xl-6 col-sm mx-auto">
