@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $userCommandes = auth()->user()->orders;
-        return view('profil', compact('userCommandes'));
+        $orders = auth()->user()->orders;
+        return view('profil', compact('orders'));
     }
 
-    public function show($id)
+    public function update($id, Request $request)
     {
-        $order = Order::find($id);
-        return view('order', compact('order'));
+        $user = User::find($id);
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+        return back();
     }
 
-    public function edit($id)
-    {
-        $order = Order::find($id);
-        return view('editOrder', compact('order'));
-    }
+
 }
