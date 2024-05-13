@@ -16,32 +16,31 @@
                         <p class='h4'>Categories</p>
                         <hr class="w-100" />
 
-                        <div class="btn-group dropdown w-100">
-                            <select class="form-select" name="type" required>
-                                <option value="All">All categories</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
+                    <div class="btn-group dropdown w-100">
+                        <select class="form-select" name="type" required>
+                            <option value="All">All categories</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Prix -->
+                    <div class="d-flex" style="height: 60px;"></div>
+                    <p class='h4'>Prix</p>
+                    <hr class="w-100"/>
+                    <div class="d-flex" style="height: 20px;"></div>
+                    <div class="d-flex justify-content-center">
+                        <div class="input-group mb-3 me-2">
+                            <input type="text" class="form-control" placeholder="Prix min" id="minPrice"
+                                   aria-label="Prix min" aria-describedby="button-addon2"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, ''); filterProducts();">
+                            <span class="input-group-text" id="button-addon2">€</span>
                         </div>
-                        <!-- Prix -->
-                        <div class="d-flex" style="height: 60px;"></div>
-                        <p class='h4'>Prix</p>
-                        <hr class="w-100" />
-                        <div class="d-flex" style="height: 20px;"></div>
-                        <div class="d-flex justify-content-center">
-                            <div class="input-group mb-3 me-2">
-                                <input type="text" class="form-control" placeholder="Prix min" id="minPrice"
-                                    aria-label="Prix min" aria-describedby="button-addon2"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, ''); filterProducts();">
-                                <span class="input-group-text" id="button-addon2">€</span>
-                            </div>
-                            <div class="input-group mb-3 ms-2">
-                                <input type="text" class="form-control" placeholder="Prix max" id="maxPrice"
-                                    aria-label="Prix max" aria-describedby="button-addon2"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, ''); filterProducts();">
-                                <span class="input-group-text" id="button-addon2">€</span>
-                            </div>
+                        <div class="input-group mb-3 ms-2">
+                            <input type="text" class="form-control" placeholder="Prix max" id="maxPrice"
+                                   aria-label="Prix max" aria-describedby="button-addon2"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, ''); filterProducts();">
+                            <span class="input-group-text" id="button-addon2">€</span>
                         </div>
                         <!-- More -->
                         <div class="d-flex" style="height: 60px;"></div>
@@ -88,13 +87,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="d-flex justify-content-center mt-5 "> {{ $products->links('vendors.pagination.custom') }}</div>
                 </div>
             </div>
+            <div class="d-flex justify-content-center mt-5 "> {{ $products->links('vendors.pagination.custom') }}</div>
         </div>
-
+    </div>
 @endsection
 
