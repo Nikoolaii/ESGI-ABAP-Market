@@ -73,15 +73,29 @@
                         <button class="btn btn-outline-secondary" type="submit">Apply</button>
                     </div>
                 </form>
-                @if(session('promo'))
-                    <div class="alert alert-success">
-                        {{ session('promo') }}
-                    </div>
-                @endif
+
             </div>
+            @if(session('promo'))
+                <div>
+                    <h3>Promo code: {{ session('promo')['code'] }}
+                        <form action="{{ route('basket.promo') }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </h3>
+                    <p>Discount: {{ session('promo')['discount'] }}%</p>
+                    <p>Price after discount: {{ session('promo')['priceAfterDiscount'] }} $</p>
+                    <p>Price before discount: {{session('total')}} $</p>
+                </div>
+            @endif
             <hr/>
             <div class="d-flex justify-content-between">
-                <h3>Total: {{ $total }}$</h3>
+                <h3>Total: @if(session('promo'))
+                        {{ session('promo')['priceAfterDiscount'] }}
+                    @else
+                        {{ session('total') }}
+                    @endif$</h3>
                 <div>
                     <a href="{{ route('products.index') }}" class="btn btn-primary">Continue shopping</a>
                 </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\faqAnswerController;
@@ -54,11 +55,14 @@ Route::put('/profil/update/{id}', [UserController::class, 'update'])
     ->name('profil.update');
 
 Route::resource('contact', ContactController::class);
+
 Route::get('/faqAnswer/create/{id}', [faqAnswerController::class, 'create'])
     ->name('faqAnswer.create');
+Route::get('/faqAnswer/{id}', [faqAnswerController::class, 'destroy'])
+    ->name('faqAnswer.destroy');
+Route::post('/faqAnswer/store', [faqAnswerController::class, 'store'])
+    ->name('faqAnswer.store');
 
-Route::resource('faqAnswer', faqAnswerController::class)
-    ->except(['create']);
 
 Route::get('basket', [BasketController::class, 'index'])
     ->name('basket')
@@ -86,4 +90,8 @@ Route::post('basket/promo', [BasketController::class, 'addPromo'])
 
 Route::delete('basket/promo', [BasketController::class, 'removePromo'])
     ->name('basket.promo.remove')
+    ->middleware('auth');
+
+Route::get('basket/checkout', [CheckoutController::class, 'checkout'])
+    ->name('basket.checkout')
     ->middleware('auth');
