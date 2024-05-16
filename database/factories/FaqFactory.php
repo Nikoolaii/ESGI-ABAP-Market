@@ -19,7 +19,6 @@ class FaqFactory extends Factory
         return [
             'created_at' => now(),
             'updated_at' => now(),
-            'category' => $this->faker->sentence(),
             'object' => $this->faker->sentence(),
             'description' => $this->faker->sentence(),
             'user_id' => $this->faker->numberBetween(1, 10),

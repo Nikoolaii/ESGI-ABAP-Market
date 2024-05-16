@@ -22,6 +22,7 @@ class OrderFactory extends Factory
             'user_id' => $this->faker->numberBetween(1, 10),
             'status' => 'pending',
             'total' => $this->faker->randomFloat(2, 0, 100),
+            'address' => $this->faker->address(),
         ];
     }
 }
