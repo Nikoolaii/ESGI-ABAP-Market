@@ -17,7 +17,7 @@
 
                 <p class="h8 py-3">Payment Details</p>
                 <hr/>
-                <input name="address" type="text" placeholder="Adress" class="form-control mb-3" id="address">
+                <input name="address" type="text" placeholder="Address" class="form-control mb-3" id="address">
                 <input name="city" type="text" placeholder="City" class="form-control mb-3" id="city">
                 <input name="country" type="text" placeholder="Country" class="form-control mb-3" id="country">
                 <input name="zip" type="text" placeholder="Zip" class="form-control mb-3" id="zip">

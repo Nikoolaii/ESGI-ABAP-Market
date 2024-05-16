@@ -88,7 +88,7 @@ Route::delete('basket/promo', [BasketController::class, 'removePromo'])
     ->name('basket.promo.remove')
     ->middleware('auth');
 
-Route::post('basket/checkout', [BasketController::class, 'checkout'])
+Route::get('basket/checkout', [CheckoutController::class, 'checkout'])
     ->name('basket.checkout')
     ->middleware('auth');
 

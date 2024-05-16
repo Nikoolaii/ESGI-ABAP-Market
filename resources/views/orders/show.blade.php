@@ -10,7 +10,7 @@
                     <button class="btn btn-primary">Go back</button>
                 </a>
             @else
-                <a href="{{ route('profil') }}">
+                <a href="{{ route('profil.index') }}">
                     <button class="btn btn-primary">Go back</button>
                 </a>
             @endif

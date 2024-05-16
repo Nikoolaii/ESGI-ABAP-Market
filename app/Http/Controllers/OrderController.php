@@ -16,6 +16,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
+        if ($order->user_id != auth()->id() && !auth()->user()->isAdmin())
+            return redirect('/');
         return view('orders.show', compact('order'));
     }
 
