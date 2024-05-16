@@ -34,6 +34,8 @@
 
 1. Clone this repository to your local machine.
 2. Make a `composer i` to install all dependencies and init project.
+3. Make a `npm i` to install all node dependencies.
+4. Do `npm build` to build npm dependencies.
 3. Modify your database connection information. (`./.env -> DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME,
    DB_PASSWORD).
 4. Launch the command to migrate the database ```php artisan migrate```.
