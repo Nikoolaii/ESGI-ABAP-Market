@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@section('content')  
-        <div class="container-fluid ">
-            <div class="row h-100 text-dark ">
-                <!-- Colonne pour les filtres -->
-                <div class="card shadow-lg col-xl-4 col-sm border pt-5">
-                    <div class="col-xl-10 col-sm mx-auto">
-                        <h1>Filters <i class="fas fa-filter fa-fw"></i></h1>
-                        <div class="d-flex" style="height: 20px;"></div>
-                        <div class="input-group mb-3">
-                            <input type="search" class="form-control" id="search" placeholder="Search a product"
-                                aria-label="SearchBar" aria-describedby="button-search" />
-                        </div>
-                        <div class="d-flex" style="height: 20px;"></div>
-                        <p class='h4'>Categories</p>
-                        <hr class="w-100" />
+@section('content')
+    <div class="container-fluid ">
+        <div class="row h-100 text-dark ">
+            <!-- Colonne pour les filtres -->
+            <div class="card shadow-lg col-xl-4 col-sm border pt-5">
+                <div class="col-xl-10 col-sm mx-auto">
+                    <h1>Filters <i class="fas fa-filter fa-fw"></i></h1>
+                    <div class="d-flex" style="height: 20px;"></div>
+                    <div class="input-group mb-3">
+                        <input type="search" class="form-control" id="search" placeholder="Search a product"
+                               aria-label="SearchBar" aria-describedby="button-search"/>
+                    </div>
+                    <div class="d-flex" style="height: 20px;"></div>
+                    <p class='h4'>Categories</p>
+                    <hr class="w-100"/>
 
                     <div class="btn-group dropdown w-100">
                         <select class="form-select" name="type" required>
@@ -42,21 +42,21 @@
                                    oninput="this.value = this.value.replace(/[^0-9]/g, ''); filterProducts();">
                             <span class="input-group-text" id="button-addon2">€</span>
                         </div>
-                        <!-- More -->
-                        <div class="d-flex" style="height: 60px;"></div>
-                        <p class='h4'>More</p>
-                        <hr class="w-100" />
-                        <div class="d-flex" style="height: 20px;"></div>
-                        <div class="d-flex justify-content-center">
-                            <div class="input-group mb-3 ms-2">
-                                {{-- list of filters like popularity, price asc or desc --}}
-                                <div class="btn-group dropdown w-100 btn-secondary">
-                                    <select id="sortDropdown" class="form-select" name="sortDropdown">
-                                        <option value="popularity">Popularity</option>
-                                        <option value="priceLowToHigh">Price: Low to High</option>
-                                        <option value="priceHighToLow">Price: High to Low</option>
-                                    </select>
-                                </div>
+                    </div>
+                    <!-- More -->
+                    <div class="d-flex" style="height: 60px;"></div>
+                    <p class='h4'>More</p>
+                    <hr class="w-100"/>
+                    <div class="d-flex" style="height: 20px;"></div>
+                    <div class="d-flex justify-content-center">
+                        <div class="input-group mb-3 ms-2">
+                            {{-- list of filters like popularity, price asc or desc --}}
+                            <div class="btn-group dropdown w-100 btn-secondary">
+                                <select id="sortDropdown" class="form-select" name="sortDropdown">
+                                    <option value="popularity">Popularity</option>
+                                    <option value="priceLowToHigh">Price: Low to High</option>
+                                    <option value="priceHighToLow">Price: High to Low</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -97,11 +97,12 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="d-flex justify-content-center mt-5 "> {{ $products->links('vendors.pagination.custom') }}</div>
                 </div>
+                <div
+                    class="d-flex justify-content-center mt-5 "> {{ $products->links('vendors.pagination.custom') }}</div>
             </div>
-            <div class="d-flex justify-content-center mt-5 "> {{ $products->links('vendors.pagination.custom') }}</div>
         </div>
     </div>
+
 @endsection
 

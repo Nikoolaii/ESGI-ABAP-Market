@@ -21,15 +21,17 @@ class BasketController extends Controller
     {
         $basketElements = [];
         $total = 0;
-        foreach (session('basket') as $id => $basket) {
-            $product = Product::find($id);
-            $basket['product'] = $product;
-            $basket['total'] = $product->price * $basket['quantity'];
-            $basket['quantity'] = $basket['quantity'];
-            $basket['id'] = $id;
-            $basket['price'] = $product->price * $basket['quantity'];
-            $total += $basket['price'];
-            $basketElements[] = $basket;
+        if (session()->has('basket')) {
+            foreach (session('basket') as $id => $basket) {
+                $product = Product::find($id);
+                $basket['product'] = $product;
+                $basket['total'] = $product->price * $basket['quantity'];
+                $basket['quantity'] = $basket['quantity'];
+                $basket['id'] = $id;
+                $basket['price'] = $product->price * $basket['quantity'];
+                $total += $basket['price'];
+                $basketElements[] = $basket;
+            }
         }
         session()->put('total', $total);
         return $basketElements;
@@ -104,15 +106,25 @@ class BasketController extends Controller
         if (!$discount) {
             return redirect()->back()->with('error', 'Promo code not found!');
         }
-        if ($discount->start_date > now() || $discount->end_date < now()) {
+        if ($discount->created_at > now() || $discount->expires_at < now()) {
             return redirect()->back()->with('error', 'Promo code is not valid!');
         }
-        $basket = session()->get('basket');
         $total = session()->get('total');
-        $total = $total - ($total * $discount->discount / 100);
+        $priceAfterDiscount = ($total - $discount->value / 100 * $total);
+        $priceAfterDiscount = number_format((float)$priceAfterDiscount, 2, '.', '');
         session()->put('total', $total);
-        session()->put('promo', $discount->discount);
+        session()->put('promo', [
+            'code' => $discount->code,
+            'discount' => $discount->value,
+            'priceAfterDiscount' => $priceAfterDiscount
+        ]);
         return redirect()->back()->with('success', 'Promo code added successfully!');
+    }
+
+    public function removePromo()
+    {
+        session()->forget('promo');
+        return redirect()->back()->with('success', 'Promo code removed successfully!');
     }
 
     public function product()
