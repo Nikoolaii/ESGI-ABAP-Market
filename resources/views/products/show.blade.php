@@ -24,7 +24,8 @@
                         <div class="col-xl">
                             <div class='d-flex' style='height: 20px;'></div>
                             <div class="mx-auto text-center">
-                                <img src="{{ $product->image }}" class='img-fluid' style="height: 300px; width: auto;"
+                                <img src="../../{{ $product->image }}" class='img-fluid'
+                                     style="height: 300px; width: auto;"
                                      alt="{{ $product->name }}">
                             </div>
                         </div>
