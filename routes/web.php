@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\BasketController;
@@ -92,6 +91,42 @@ Route::delete('basket/promo', [BasketController::class, 'removePromo'])
     ->name('basket.promo.remove')
     ->middleware('auth');
 
-Route::get('basket/checkout', [CheckoutController::class, 'checkout'])
+Route::post('basket/checkout', [BasketController::class, 'checkout'])
     ->name('basket.checkout')
+    ->middleware('auth');
+
+Route::put('basket/update/{id}', [BasketController::class, 'update'])
+    ->name('basket.update')
+    ->middleware('auth');
+
+Route::delete('basket/remove/{id}', [BasketController::class, 'destroy'])
+    ->name('basket.destroy')
+    ->middleware('auth');
+
+Route::post('basket/promo', [BasketController::class, 'addPromo'])
+    ->name('basket.promo')
+    ->middleware('auth');
+
+Route::delete('basket/promo', [BasketController::class, 'removePromo'])
+    ->name('basket.promo.remove')
+    ->middleware('auth');
+
+Route::post('basket/checkout', [BasketController::class, 'checkout'])
+    ->name('basket.checkout')
+    ->middleware('auth');
+
+Route::put('basket/update/{id}', [BasketController::class, 'update'])
+    ->name('basket.update')
+    ->middleware('auth');
+
+Route::delete('basket/remove/{id}', [BasketController::class, 'destroy'])
+    ->name('basket.destroy')
+    ->middleware('auth');
+
+Route::post('basket/promo', [BasketController::class, 'addPromo'])
+    ->name('basket.promo')
+    ->middleware('auth');
+
+Route::delete('basket/promo', [BasketController::class, 'removePromo'])
+    ->name('basket.promo.remove')
     ->middleware('auth');

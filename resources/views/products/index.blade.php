@@ -61,31 +61,37 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Colonne pour les articles -->
-            <div class="col-xl-8 col-sm text-center border pt-5">
-                <div class="col-xl-10 mx-auto">
-                    <h1>Products</h1>
-                    <div class="d-flex" style="height: 50px;"></div>
-                    <div class="row d-flex flex-wrap" id="productsContainer">
-                        @foreach ($products as $product)
-                            <div class="col-xl-4 mb-5 product-card" data-category="{{ $product->categorie_id }}"
-                                 data-popularity="{{ $product->total_orders }}">
-                                <div class='card shadow-lg col-xl-12 col-sm-6 border pt-3 mx-auto'
-                                     style="height:450px;">
-                                    <div style="height: 200px;"
-                                         class="d-flex align-items-center justify-content-center">
-                                        <img src="{{ $product->image }}" alt="product image"
-                                             class='img-fluid mx-auto h-75 d-inline-block'>
-                                    </div>
-                                    <div class='card-body'>
-                                        <h5 class='card-title pb-1'><b>{{ $product->name }}</b></h5>
-                                        <p class='card-text h5 pb-2'>Price {{ $product->price }} €</p>
-                                        <form action="{{ route('products.show', $product->id) }}" method="get">
-                                            @csrf
-                                            <input class="d-none" type="text" name="id_product"/>
-                                            <button type="submit" class='btn btn-primary btn-lg'>See more</button>
-                                        </form>
+                <!-- Colonne pour les articles -->
+                <div class="col-xl-8 col-sm text-center border p-0">
+                    <div class="col-xl-12">
+                        @if (isset($discount))
+                            <h3 class="text-center text-dark mb-0 py-2 shadow rounded" style="background-color: #FFF;">Purchase with the code
+                                {{ $discount->code }} and
+                                obtain a discount of {{ $discount->value }} %</h3>
+                        @endif
+                    </div>
+                    <div class="col-xl-10 mx-auto  pt-5">
+                        <h1>Products</h1>
+                        <div class="d-flex" style="height: 50px;"></div>
+                        <div class="row d-flex flex-wrap" id="productsContainer">
+                            @foreach ($products as $product)
+                                <div class="col-xl-4 mb-5 product-card" data-category="{{ $product->categorie_id }}" data-popularity="{{ $product->total_orders }}">
+                                    <div class='card shadow-lg col-xl-12 col-sm-6 border pt-3 mx-auto'
+                                        style="height:450px;">
+                                        <div style="height: 200px;"
+                                            class="d-flex align-items-center justify-content-center">
+                                            <img src="{{ $product->image }}" alt="product image"
+                                                class='img-fluid mx-auto h-75 d-inline-block'>
+                                        </div>
+                                        <div class='card-body'>
+                                            <h5 class='card-title pb-1'><b>{{ $product->name }}</b></h5>
+                                            <p class='card-text h5 pb-2'>Price {{ $product->price }} €</p>
+                                            <form action="{{ route('products.show', $product->id) }}" method="post">
+                                                @csrf
+                                                <input class="d-none" type="text" name="id_product" />
+                                                <button type="submit" class='btn btn-primary btn-lg'>See more</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
