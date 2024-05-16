@@ -29,23 +29,24 @@
                     </button>
                 </div>
             </div>
-            <div class="row d-flex justify-content-around mt-5">
-                <div class="shadow shadow-lg rounded-4 p-4 w-25">
-                    <p class="h1 text-center">Total product on our site</p>
-                    <br>
-                    <p class="h1 text-center text-primary">{{ $products }}</p>
+                <div class="row col-sm d-flex justify-content-around mt-5">
+                    <div class="col-xl-3 col-sm-8 shadow shadow-lg rounded-4 p-4">
+                        <p class="h1 text-center">Total product on our site</p>
+                        <br>
+                        <p class="h1 text-center text-primary">{{ $products }}</p>
+                    </div>
+                    <div class="col-xl-3 col-sm-8 shadow shadow-lg rounded-4 p-4">
+                        <p class="h1 text-center">Total product ordered</p>
+                        <br>
+                        <p class="h1 text-center text-primary">{{ $totalOrdered }}</p>
+                    </div>
+                    <div class="col-xl-3 col-sm-8 shadow shadow-lg rounded-4 p-4">
+                        <p class="h1 text-center">Total user registered</p>
+                        <br>
+                        <p class="h1 text-center text-primary">{{ $users }}</p>
+                    </div>
                 </div>
-                <div class="shadow shadow-lg rounded-4 p-4 w-25">
-                    <p class="h1 text-center">Total product ordered</p>
-                    <br>
-                    <p class="h1 text-center text-primary">{{ $totalOrdered }}</p>
-                </div>
-                <div class="shadow shadow-lg rounded-4 p-4 w-25">
-                    <p class="h1 text-center">Total user registered</p>
-                    <br>
-                    <p class="h1 text-center text-primary">{{ $users }}</p>
-                </div>
-            </div>
+
             <div class="d-flex" style="height:100px;"></div>
             <div class="mx-auto text-center pb-5">
                 <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">Discover our products</a>
