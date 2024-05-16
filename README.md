@@ -1,17 +1,23 @@
-# Laravel - Blog Exercice #
+# Laravel - ABAP Market #
 
 <p align="center">
-   <strong>An exercice in objective to learn Laravel with a blog</strong><br />
-   <strong>It's just a simple laravel blog</strong>
+   <strong>An exercice in objective to learn Laravel with a e-commerce website</strong><br />
+   <strong>A laravel e-commerce website</strong>
 </p>
 
 ### Features 🚀
 
-- 🌐 **Create an article**
+- 🌐 **Show the list of products**
 
-- 🔄 **Edit an article**
+- 🔄 **Buy products**
 
-- ⭐ **Delete articles with an admin panel**
+- ⭐ **Store products in a cart**
+
+- 📦 **Checkout the cart**
+
+- 📝 **Create an account**
+
+- 🍒 **Manage products, orders, categories in the admin panel**
 
 ## Prerequisites for use 🛠️
 
@@ -31,12 +37,13 @@
 3. Modify your database connection information. (`./.env -> DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME,
    DB_PASSWORD).
 4. Launch the command to migrate the database ```php artisan migrate```.
-5. Do a ```php artisan db:seed --class=ArticleSeeder``` to seed the database.
+5. Do a ```php artisan db:seed --class=DatabaseSeeder``` to seed the database.
 6. Start Laravel server with ```php artisan serve```.
 
 ## Authors ✨
 
-[@Nikoolaii](https://github.com/Nikoolaii)
+[@Nikoolaii](https://github.com/Nikoolaii)<br/>
+[@Thibault](https://github.com/tibaaault)
 
 ## License 📄
 
