@@ -62,8 +62,15 @@
                     </div>
                 </div>
                 <!-- Colonne pour les articles -->
-                <div class="col-xl-8 col-sm text-center border pt-5">
-                    <div class="col-xl-10 mx-auto">
+                <div class="col-xl-8 col-sm text-center border p-0">
+                    <div class="col-xl-12">
+                        @if (isset($discount))
+                            <h3 class="text-center text-dark mb-0 py-2 shadow rounded" style="background-color: #FFF;">Purchase with the code
+                                {{ $discount->code }} and
+                                obtain a discount of {{ $discount->value }} %</h3>
+                        @endif
+                    </div>
+                    <div class="col-xl-10 mx-auto  pt-5">
                         <h1>Products</h1>
                         <div class="d-flex" style="height: 50px;"></div>
                         <div class="row d-flex flex-wrap" id="productsContainer">

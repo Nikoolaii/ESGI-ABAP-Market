@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\DB;
+use App\Models\Discount;
 
 class ProductController extends Controller
 {
@@ -20,10 +21,15 @@ class ProductController extends Controller
 
         $categories = Categorie::all();
 
+        $discount = Discount::where('expires_at', '>', now())
+        ->orderBy('expires_at', 'asc')
+        ->first();
+
 
         return view('products.index', [
             'products' => $products,
             'categories' => $categories,
+            'discount' => $discount
         ]);
     }
 
@@ -31,7 +37,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         return view('products.show', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
     

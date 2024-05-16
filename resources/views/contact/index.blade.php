@@ -13,18 +13,17 @@
                 <div class="accordion mt-1" id="accordionExample faqContainer">
                     @foreach ($questions as $key => $question)
                         <div class="accordion-item faq-card mb-3 shadow shadow-lg rounded"
-                             data-category="{{ $question->category }}">
+                            data-category="{{ $question->category }}">
                             <h2 class="accordion-header">
-                                <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ $question->id }}"
-                                        aria-expanded=" {{ $key === 0 ? 'true' : 'false' }}"
-                                        aria-controls="collapse{{ $question->id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ $question->id }}"
+                                    aria-expanded=" {{ $key === 0 ? 'true' : 'false' }}"
+                                    aria-controls="collapse{{ $question->id }}">
                                     {{ $question->object }}
                                 </button>
                             </h2>
-                            <div id="collapse{{ $question->id }}"
-                                 class="accordion-collapse collapse"
-                                 data-bs-parent="#accordionExample">
+                            <div id="collapse{{ $question->id }}" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <p>Created at: {{ $question->created_at->format('H:i:s d-m-Y') }}</p>
                                     <p class="lead">{{ $question->description }}</p>
@@ -53,13 +52,13 @@
                                             Nobody answered
                                         </div>
                                     @endif
-                                    <form action="{{route('faqAnswer.create', $question->id)}}" method="get">
+                                    <form action="{{ route('faqAnswer.create', $question->id) }}" method="get">
                                         @csrf
                                         <div class="mx-auto text-center mb-2">
                                             <input type="submit" class="btn btn-primary" value="Answer">
                                         </div>
                                     </form>
-                                    @if(isset(Auth::user()->is_admin) && Auth::user()->is_admin == 1)
+                                    @if (isset(Auth::user()->is_admin) && Auth::user()->is_admin == 1)
                                         <form action="{{ route('contact.destroy', $question->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
