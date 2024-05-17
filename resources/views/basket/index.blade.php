@@ -29,16 +29,15 @@
                     <tr>
                         <td class="align-middle">
                             <img src="{{ $item['product']->image }}" alt="{{ $item['product']->name }}"
-                                 class="img-thumbnail"
-                                 style="width: 100px; height: 100px;">
+                                 style="width: 70%"/>
                         </td>
                         <td class="align-middle">
                             <h3>{{ $item['product']->name }}</h3>
                             <p>{{ $item['product']->description }}</p>
                         </td>
-                        <td class="align-middle">
-                            <h3>{{$item['price']}}$</h3>
-                            <p>{{ $item['product']->price }}$</p>
+                        <td class="align-middle" style="width: 10%">
+                            <h3>{{$item['price']}} $</h3>
+                            <p>{{ $item['product']->price }} $</p>
                         </td>
                         <td class="align-middle">
                             <form action="{{ route('basket.update', $item['id']) }}" method="post">

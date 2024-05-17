@@ -61,6 +61,7 @@
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Product name</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>
@@ -70,11 +71,14 @@
                 <tbody>
                 @foreach($order->orderItems as $product)
                     <tr>
-                        <th scope="row">{{$product->product_id}}</th>
-                        <td>{{$product->product->name}}</td>
-                        <td>{{$product->quantity}}</td>
-                        <td>{{$product->price}}</td>
-                        <td>{{$product->quantity * $product->price}}</td>
+                        <th scope="row" class="align-middle">{{$product->product_id}}</th>
+                        <td><img src="{{"../".$product->product->image}}" alt="RIEN A VOIR"
+                                 class='img-fluid mx-auto d-inline-block rounded rounded-5'
+                                 style="height: 100px;"></td>
+                        <td class="align-middle">{{$product->product->name}}</td>
+                        <td class="align-middle">{{$product->quantity}}</td>
+                        <td class="align-middle">{{$product->price}}</td>
+                        <td class="align-middle">{{$product->quantity * $product->price}}</td>
                     </tr>
                 @endforeach
                 </tbody>
